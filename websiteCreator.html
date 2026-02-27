@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Website Settings</title>
+    <style>
+      button,
+      fieldset,
+      .settings,
+      .about,
+      #kindOf,
+      #title,
+      #websiteLegend,
+      #engineTitle {
+        font-family: sans-serif;
+      }
+
+      textarea {
+        width: 100%;
+        height: 100px;
+        font-size: 16px;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+
+      button {
+        border-color: white;
+        border-radius: 10px;
+      }
+
+      fieldset,
+      div,
+      textarea {
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 id="title" style="color: lightskyblue;"><center>Website* Creator</center></h1>
+
+    <div class="settings">
+      <fieldset>
+        <legend>Website Settings</legend>
+
+        <fieldset class="backgroundColor">
+          <legend>Background Color</legend>
+          <button onclick="changeBackgroundColor('white')">Reset</button>
+          <button onclick="changeBackgroundColor('red')">Red</button>
+          <button onclick="changeBackgroundColor('green')">Green</button>
+          <button onclick="changeBackgroundColor('blue')">Blue</button>
+          <button onclick="changeBackgroundColor('yellow')">Yellow</button>
+        </fieldset>
+
+        <fieldset class="fontFamily">
+          <legend>Font Family</legend>
+          <button onclick="changeFontFamily('Times New Roman, Times, serif')">
+            Reset
+          </button>
+          <button
+            onclick="
+              changeFontFamily('Segoe UI, Tahoma, Geneva, Verdana, sans-serif')
+            "
+          >
+            Segoe UI
+          </button>
+          <button onclick="changeFontFamily('Times New Roman, Times, serif')">
+            Times New Roman
+          </button>
+          <button onclick="changeFontFamily('Arial, Helvetica, sans-serif')">
+            Arial
+          </button>
+          <button
+            onclick="
+              changeFontFamily(
+                'Lucida Sans, Lucida Sans Regular, Lucida Grande, Lucida Sans Unicode, Geneva, Verdana, sans-serif',
+              )
+            "
+          >
+            Lucida Sans
+          </button>
+        </fieldset>
+
+        <fieldset class="fontSize">
+          <legend>Font Size</legend>
+          <button onclick="changeFontSize('16px')">Reset</button>
+          <button onclick="changeFontSize('14px')">14px</button>
+          <button onclick="changeFontSize('18px')">18px</button>
+          <button onclick="changeFontSize('24px')">24px</button>
+          <button onclick="changeFontSize('35px')">35px</button>
+        </fieldset>
+
+        <fieldset class="fontColor">
+          <legend>Font Color</legend>
+          <button onclick="changeFontColor('black')">Reset</button>
+          <button onclick="changeFontColor('red')">Red</button>
+          <button onclick="changeFontColor('green')">Green</button>
+          <button onclick="changeFontColor('blue')">Blue</button>
+          <button onclick="changeFontColor('yellow')">Yellow</button>
+        </fieldset>
+
+        <fieldset class="textView">
+          <legend>Text View</legend>
+
+          <button onclick="changeTextAlign('left')">Left</button>
+          <button onclick="changeTextAlign('center')">Center</button>
+          <button onclick="changeTextAlign('right')">Right</button>
+        </fieldset>
+
+        <fieldset class="data">
+          <legend>Data</legend>
+          <textarea id="data" oninput="updateWebsiteData()"></textarea>
+        </fieldset>
+      </fieldset>
+    </div>
+
+    <br />
+
+    <div id="website">
+      <fieldset>
+        <legend id="websiteLegend">Website</legend>
+        <p id="displayData"></p>
+      </fieldset>
+    </div>
+
+    <br />
+
+    <fieldset class="about">
+      <legend>About</legend>
+      <p>
+        Made by <a href="https://www.github.com/wak6817">Wak6817</a> and 
+        by
+        <a href="https://www.github.com/anti-machine">Anti-machine</a>
+      </p>
+    </fieldset>
+
+    <div id="websiteSettings">
+      <button onclick="websiteTheme('white')">Light mode</button>
+      <button onclick="websiteTheme('black')">Dark mode</button>
+    </div>
+    <p id="kindOf">*kind of</p>
+
+    <script>
+      function changeBackgroundColor(bgColor) {
+        document.getElementById("website").style.backgroundColor = bgColor;
+      }
+
+      function changeFontFamily(fontFamily) {
+        document.querySelectorAll("#website p").forEach((p) => {
+          p.style.fontFamily = fontFamily;
+        });
+      }
+
+      function changeFontSize(fontSize) {
+        document.querySelectorAll("#website p").forEach((p) => {
+          p.style.fontSize = fontSize;
+        });
+      }
+
+      function changeFontColor(fontColor) {
+        document.querySelectorAll("#website p").forEach((p) => {
+          p.style.color = fontColor;
+        });
+      }
+
+      function updateWebsiteData() {
+        const text = document.getElementById("data").value;
+        document.getElementById("displayData").innerHTML = text.replace(
+          /\n/g,
+          "<br>",
+        );
+      }
+
+      function websiteTheme(theme) {
+        alert("Some things might not work and the background + Font colors will reset!");
+        document.body.style.backgroundColor = theme;
+
+        const textColor = theme === "white" ? "black" : "white";
+
+        document
+          .querySelectorAll("#website, #website p, .about, .settings")
+          .forEach((el) => (el.style.color = textColor));
+      }
+
+      function changeTextAlign(align) {
+        document.querySelectorAll("#website p").forEach((p) => {
+          p.style.textAlign = align;
+        });
+      }
+    </script>
+  </body>
+</html>
